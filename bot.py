@@ -2,7 +2,7 @@ import telebot
 import subprocess
 
 # Replace with your Telegram Bot API token
-bot = telebot.TeleBot('5848326557:AAEbUe83pXPuHRZYBaB1WIL_CaFdntX-9w8')
+bot = telebot.TeleBot('5848326557:AAF4VFeHegPTn4CCFbms0QzqUk3FppVyAnE')
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
