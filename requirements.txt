@@ -3,7 +3,7 @@ pillow
 watchdog
 pydub
 requests
-https://github.com/mullwar/telebot/archive/refs/heads/master.zip
+telebot
 subprocess.run
 pyrogram
 Flask==2.2.2
