@@ -6,7 +6,7 @@ bot = telebot.TeleBot('5848326557:AAEbUe83pXPuHRZYBaB1WIL_CaFdntX-9w8')
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    bot.reply_to(message, "السلام عليكم . أنا بوت تفريغ الصوتيات")
+    bot.reply_to(message, "السلام عليكم . أنا بوت تفريغ الصوتيات . فقط حول الصوتية التي تريد تفريغها \n\n لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ")
 
 
 # Handler for audio messages
