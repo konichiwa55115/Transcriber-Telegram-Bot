@@ -3,7 +3,6 @@ pillow
 watchdog
 pydub
 requests
-telebot
 subprocess.run
 pyrogram
 Flask==2.2.2
