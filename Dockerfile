@@ -2,7 +2,7 @@
 #Must Subscribe On YouTube @LazyDeveloperr
 # Python Based Docker
 # Python Based Docker
-FROM python:latest
+FROM python
 
 # Installing Packages
 RUN apt update && apt upgrade -y
