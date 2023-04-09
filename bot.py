@@ -4,9 +4,15 @@ import subprocess
 # Replace with your Telegram Bot API token
 bot = telebot.TeleBot('5848326557:AAGatJA3c9m0JJZinxN2mSOsolFdhtyvIDM')
 
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    bot.reply_to(message, "السلام عليكم . أنا بوت تفريغ الصوتيات")
+
+
 # Handler for audio messages
 @bot.message_handler(content_types=['audio'])
 def handle_audio(message):
+    bot.reply_to(message, "جاري التفريغ . سيتم إرسال ملف التفريغ بعد الانتهاء إن شاء الله")
     # Download audio file
     audio_file = bot.download_file(bot.get_file(message.audio.file_id).file_path)
     # Rename audio file to "entry"
