@@ -3,5 +3,5 @@ pillow
 watchdog
 pydub
 requests
-telebot
-subprocess
+https://github.com/mullwar/telebot/archive/refs/heads/master.zip
+subprocess.run
