@@ -3,7 +3,8 @@ pillow
 watchdog
 pydub
 requests
-subprocess.runwget
+subprocess.run
+wget
 asyncio
 pyrogram==1.0.1
 tgcrypto
