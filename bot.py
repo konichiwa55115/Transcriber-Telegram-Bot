@@ -13,7 +13,7 @@ def handle_audio(message):
     with open('entry.mp3', 'wb') as f:
         f.write(audio_file)
     # Execute speech.py script with entry file
-    subprocess.getoutput(['python', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', 'entry.mp3', 'transcription.txt'])
+    subprocess.call(['python', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', 'entry.mp3', 'transcription.txt'])
     # Upload transcription file to user
     with open('transcription.txt', 'rb') as f:
         bot.send_document(message.chat.id, f)
