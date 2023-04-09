@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+import subprocess
 bot = Client(
     "myfirs",
     api_id=17983098,
