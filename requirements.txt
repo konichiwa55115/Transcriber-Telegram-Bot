@@ -1,0 +1,7 @@
+coloredlogs
+pillow
+watchdog
+pydub
+requests
+telebot
+subprocess
