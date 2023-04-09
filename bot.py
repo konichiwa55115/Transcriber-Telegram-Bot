@@ -14,11 +14,10 @@ def _telegram_file(client, message):
   user_id = message.from_user.id
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.audio
-  file_path = message.download(file_name="./downloads/")
-  with open('entry.mp3', 'wb') as f:
-        f.write(audio_file)
+  file_path = message.download(entry="./downloads/")
+
     # Execute speech.py script with entry file
-  subprocess.call(['python', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', 'entry.mp3', 'transcription.txt'])
+  subprocess.call(['python', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', './downloads/entry', 'transcription.txt'])
     # Upload transcription file to user
   with open('transcription.txt', 'rb') as f:
         bot.send_document(message.chat.id, f)
