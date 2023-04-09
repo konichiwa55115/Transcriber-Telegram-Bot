@@ -5,3 +5,9 @@ pydub
 requests
 https://github.com/mullwar/telebot/archive/refs/heads/master.zip
 subprocess.run
+pyrogram
+Flask==2.2.2
+gunicorn==20.1.0
+aiohttp==3.8.1
+pymongo[srv]==3.12.3
+
