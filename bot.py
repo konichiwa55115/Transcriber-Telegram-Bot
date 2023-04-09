@@ -14,7 +14,6 @@ def _telegram_file(client, message):
   user_id = message.from_user.id
   sent_message = message.reply_text('🕵️Checking File...', quote=True)
   file = message.audio
-  LOGGER.info(f'Download:{user_id}: {file.file_id}')
-  file_path = message.download(file_name=DOWNLOAD_DIRECTORY)
+  file_path = message.download(file_name="./downloads/")
 
 bot.run()
