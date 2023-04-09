@@ -4,7 +4,7 @@ bot = Client(
     "myfirs",
     api_id=17983098,
     api_hash="ee28199396e0925f1f44d945ac174f64",
-    bot_token="5998737564:AAH19LlVDCRzXYv0T6UDgEDL36wwmwUxNGc"
+    bot_token="5782497998:AAGQaYV5w_Rw1ZSBhApXgV763_g8wf_PZEw"
 )
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
