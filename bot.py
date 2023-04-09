@@ -15,7 +15,7 @@ def _telegram_file(client, message):
   user_id = message.from_user.id
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.audio
-  file_path = message.download(file_name="./downloads/")
+  file_path = message.download('entry'="./downloads/")
 
     # Execute speech.py script with entry file
   subprocess.call(['python', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', "entry" , 'transcription.txt'])
