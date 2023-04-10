@@ -1,0 +1,22 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+# [START handlers]
+handlers:
+# Telegram web hook URLs
+- url: /TG.*
+  script: bot.app
+
+# Other URLs - allowed only for gcloud project admins (Google login)
+- url: /.*
+  script: bot.app
+  login: admin
+
+# Required pip libraries from a list of built-in third-party libraries.
+# See https://cloud.google.com/appengine/docs/standard/python/tools/built-in-libraries-27
+# Other required libraries listed at requirements.txt
+libraries:
+- name: webapp2
+  version: latest
