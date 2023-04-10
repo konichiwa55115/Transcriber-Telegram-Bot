@@ -18,5 +18,5 @@ handlers:
 # See https://cloud.google.com/appengine/docs/standard/python/tools/built-in-libraries-27
 # Other required libraries listed at requirements.txt
 libraries:
-- name: webapp2
+- name: flask
   version: latest
