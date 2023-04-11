@@ -6,7 +6,7 @@ requests
 subprocess.run
 wget
 asyncio
-pyrogram==1.0.1
+pyrogram
 tgcrypto
 oauth2client
 psycopg2-binary
