@@ -20,7 +20,7 @@ def _telegram_file(client, message):
   file_path = message.download(file_name="entry")
 
     # Execute speech.py script with entry file
-  subprocess.call(['python', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', "./downloads/entry" , 'transcription.txt'])
+  subprocess.call(['python3', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', "./downloads/entry" , 'transcription.txt'])
     # Upload transcription file to user
   with open('transcription.txt', 'rb') as f:
         bot.send_document(message.chat.id, f)
