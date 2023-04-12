@@ -29,7 +29,7 @@ def _telegram_file(client, message):
 def _telegram_file(client, message):
   user_id = message.from_user.id
   sent_message = message.reply_text('جار التفريغ', quote=True)
-  file = message.audio
+  file = message.voice
   file_path = message.download(file_name="entry")
 
     # Execute speech.py script with entry file
