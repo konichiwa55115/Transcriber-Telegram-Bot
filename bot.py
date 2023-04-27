@@ -13,12 +13,11 @@ def command1(bot,message):
     
 file_exists = exists(path_to_file)
 @bot.on_message(filters.private & filters.incoming & filters.audio )
-if file_exists=True
-   bot.send_message(message.chat.id, "عفواً هناك تفريغ يتم الآن . أرسل الصوتية في وقت لاحق  ")
-return 
-else 
-pass
 def _telegram_file(client, message):
+if file_exists=True:
+   return
+else:
+   pass
   user_id = message.from_user.id
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.audio
