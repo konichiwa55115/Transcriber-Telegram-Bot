@@ -14,11 +14,11 @@ def command1(bot,message):
 file_exists = exists(path_to_file)
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
-if file_exists=True:
-   return
-else:
-   pass
   user_id = message.from_user.id
+  if file_exists=True:
+   return
+  else:
+   pass
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.audio
   file_path = message.download(file_name="entry")
