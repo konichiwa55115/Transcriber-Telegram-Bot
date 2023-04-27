@@ -1,3 +1,4 @@
+from os.path import exists
 from pyrogram import Client, filters
 import subprocess
 bot = Client(
@@ -10,9 +11,14 @@ bot = Client(
 def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
     
-
-    
+file_exists = exists(path_to_file)
 @bot.on_message(filters.private & filters.incoming & filters.audio )
+if file_exists=True
+then 
+bot.send_message(message.chat.id, "عفواً هناك تفريغ يتم الآن . أرسل الصوتية في وقت لاحق  ")
+return 
+else 
+pass
 def _telegram_file(client, message):
   user_id = message.from_user.id
   sent_message = message.reply_text('جار التفريغ', quote=True)
