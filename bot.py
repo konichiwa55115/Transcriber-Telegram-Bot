@@ -16,11 +16,10 @@ my_file = ""
 def _telegram_file(client, message):
   user_id = message.from_user.id
   try:
-    my_abs_path = my_file.resolve(strict=True)
+     with open('/path/to/file', 'r') as fh:
+        return
   except FileNotFoundError:
     pass
-  else:
-    return
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.audio
   file_path = message.download(file_name="entry")
