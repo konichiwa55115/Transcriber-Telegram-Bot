@@ -14,8 +14,7 @@ def command1(bot,message):
 file_exists = exists(path_to_file)
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 if file_exists=True
-then 
-bot.send_message(message.chat.id, "عفواً هناك تفريغ يتم الآن . أرسل الصوتية في وقت لاحق  ")
+   bot.send_message(message.chat.id, "عفواً هناك تفريغ يتم الآن . أرسل الصوتية في وقت لاحق  ")
 return 
 else 
 pass
