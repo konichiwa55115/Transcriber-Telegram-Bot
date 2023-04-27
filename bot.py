@@ -11,15 +11,16 @@ bot = Client(
 def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
     
-my_file_exists = exists(path_to_file)
+my_file = ""
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
   user_id = message.from_user.id
   try:
-        os.path.isfile(filepath):
-        return
-  except:
-        pass
+    my_abs_path = my_file.resolve(strict=True)
+  except FileNotFoundError:
+    pass
+  else:
+    return
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.audio
   file_path = message.download(file_name="entry")
