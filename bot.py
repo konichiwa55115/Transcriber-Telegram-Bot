@@ -5,7 +5,7 @@ bot = Client(
     "myfirs",
     api_id=17983098,
     api_hash="ee28199396e0925f1f44d945ac174f64",
-    bot_token="6199159516:AAEB005tAqKx57Cp58BY3z2Ma3oMpSOe1dY"
+    bot_token="5820144966:AAEYUop5E4vQWmxWwBo9wBnx0IiSCJUs2C8"
 )
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
@@ -14,7 +14,7 @@ def command1(bot,message):
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
   try: 
-    with open('/path/to/file', 'r') as fh:
+    with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
         sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
         return
   except FileNotFoundError: 
@@ -29,11 +29,12 @@ def _telegram_file(client, message):
     # Upload transcription file to user
   with open('transcription.txt', 'rb') as f:
         bot.send_document(message.chat.id, f)
+  subprocess.call(['unlink','transcription.txt'])   
  
 @bot.on_message(filters.private & filters.incoming & filters.voice )
 def _telegram_file(client, message):
   try: 
-    with open('/path/to/file', 'r') as fh:
+    with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
         sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
         return
   except FileNotFoundError: 
@@ -48,5 +49,6 @@ def _telegram_file(client, message):
     # Upload transcription file to user
   with open('transcription.txt', 'rb') as f:
         bot.send_document(message.chat.id, f)
+  subprocess.call(['unlink','transcription.txt'])      
 
 bot.run()
