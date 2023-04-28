@@ -13,21 +13,11 @@ def command1(bot,message):
     
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
-  while(True):
-    path = input("/home/mohamadwardy88/trans5115text/")  
-    if(os.path.isdir(path)):  
-        break  
-    else:  
-        print("Entered path is wrong!") 
-  for root,dirs,files in os.walk(path):  
-    for name in files:  
-        filename = os.path.join(root,name)   
-        if os.stat(filename).st_size == 0:  
-            print(" Removing ",filename)  
-            os.remove(filename)    
-    
   try: 
     with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
+        if os.stat('/home/henrysawy51615/trans5115text/transcription.txt').st_size == 0: 
+            pass
+        else:
         sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
         return
   except FileNotFoundError: 
@@ -47,20 +37,11 @@ def _telegram_file(client, message):
 @bot.on_message(filters.private & filters.incoming & filters.voice )
 
 def _telegram_file(client, message):
-  while(True):
-    path = input("/home/mohamadwardy88/trans5115text/")  
-    if(os.path.isdir(path)):  
-        break  
-    else:  
-        print("Entered path is wrong!") 
-  for root,dirs,files in os.walk(path):  
-    for name in files:  
-        filename = os.path.join(root,name)   
-        if os.stat(filename).st_size == 0:  
-            print(" Removing ",filename)  
-            os.remove(filename)  
   try: 
     with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
+        if os.stat('/home/henrysawy51615/trans5115text/transcription.txt').st_size == 0: 
+            pass
+        else:
         sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
         return
   except FileNotFoundError: 
