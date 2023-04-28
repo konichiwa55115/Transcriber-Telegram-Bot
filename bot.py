@@ -18,8 +18,8 @@ def _telegram_file(client, message):
         if os.stat('/home/mohamadwardy88/trans5115text/transcription.txt').st_size == 0: 
             pass
         else:
-        sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
-        return
+            sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
+            return
   except FileNotFoundError: 
     pass  
   user_id = message.from_user.id 
@@ -42,8 +42,8 @@ def _telegram_file(client, message):
         if os.stat('/home/mohamadwardy88/trans5115text/transcription.txt').st_size == 0: 
             pass
         else:
-        sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
-        return
+            sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
+            return
   except FileNotFoundError: 
     pass  
   user_id = message.from_user.id
