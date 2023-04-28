@@ -12,19 +12,20 @@ def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
     
 @bot.on_message(filters.private & filters.incoming & filters.audio )
-while(True):
+def _telegram_file(client, message):
+  while(True):
     path = input("/home/mohamadwardy88/trans5115text/")  
     if(os.path.isdir(path)):  
         break  
     else:  
         print("Entered path is wrong!") 
-for root,dirs,files in os.walk(path):  
+  for root,dirs,files in os.walk(path):  
     for name in files:  
         filename = os.path.join(root,name)   
         if os.stat(filename).st_size == 0:  
             print(" Removing ",filename)  
-            os.remove(filename)  
-def _telegram_file(client, message):
+            os.remove(filename)    
+    
   try: 
     with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
         sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
@@ -44,19 +45,20 @@ def _telegram_file(client, message):
   subprocess.call(['unlink','transcription.txt'])   
  
 @bot.on_message(filters.private & filters.incoming & filters.voice )
-while(True):
+
+def _telegram_file(client, message):
+  while(True):
     path = input("/home/mohamadwardy88/trans5115text/")  
     if(os.path.isdir(path)):  
         break  
     else:  
         print("Entered path is wrong!") 
-for root,dirs,files in os.walk(path):  
+  for root,dirs,files in os.walk(path):  
     for name in files:  
         filename = os.path.join(root,name)   
         if os.stat(filename).st_size == 0:  
             print(" Removing ",filename)  
             os.remove(filename)  
-def _telegram_file(client, message):
   try: 
     with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
         sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
