@@ -13,6 +13,12 @@ def command1(bot,message):
     
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
+  try: 
+    with open('/path/to/file', 'r') as fh:
+        sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
+        return
+  except FileNotFoundError: 
+    pass  
   user_id = message.from_user.id 
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.audio
@@ -28,6 +34,7 @@ def _telegram_file(client, message):
 def _telegram_file(client, message):
   try: 
     with open('/path/to/file', 'r') as fh:
+        sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
         return
   except FileNotFoundError: 
     pass  
