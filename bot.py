@@ -14,8 +14,8 @@ def command1(bot,message):
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
   try: 
-    with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
-        if os.stat('/home/henrysawy51615/trans5115text/transcription.txt').st_size == 0: 
+    with open('/home/mohamadwardy88/trans5115text/transcription.txt', 'r') as fh:
+        if os.stat('/home/mohamadwardy88/trans5115text/transcription.txt').st_size == 0: 
             pass
         else:
         sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
@@ -38,8 +38,8 @@ def _telegram_file(client, message):
 
 def _telegram_file(client, message):
   try: 
-    with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
-        if os.stat('/home/henrysawy51615/trans5115text/transcription.txt').st_size == 0: 
+    with open('/home/mohamadwardy88/trans5115text/transcription.txt', 'r') as fh:
+        if os.stat('/home/mohamadwardy88/trans5115text/transcription.txt').st_size == 0: 
             pass
         else:
         sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
