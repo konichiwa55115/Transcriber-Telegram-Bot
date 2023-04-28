@@ -11,13 +11,7 @@ bot = Client(
 def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
     
-exists = os.path.isfile('/home/henrysawy51615/trans5115text/transcription.txt')
 @bot.on_message(filters.private & filters.incoming & filters.audio )
-
-  if exists:
-        return
-  else:
-        pass
 def _telegram_file(client, message):
   user_id = message.from_user.id 
   sent_message = message.reply_text('جار التفريغ', quote=True)
@@ -32,6 +26,11 @@ def _telegram_file(client, message):
  
 @bot.on_message(filters.private & filters.incoming & filters.voice )
 def _telegram_file(client, message):
+  try: 
+    with open('/path/to/file', 'r') as fh:
+        return
+  except FileNotFoundError: 
+    pass  
   user_id = message.from_user.id
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.voice
