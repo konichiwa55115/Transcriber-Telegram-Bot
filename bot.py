@@ -1,4 +1,4 @@
-from os.path import exists
+import os
 from pyrogram import Client, filters
 import subprocess
 bot = Client(
@@ -11,15 +11,15 @@ bot = Client(
 def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
     
-my_file = ""
+exists = os.path.isfile('/path/to/file')
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
-  user_id = message.from_user.id
-  try:
-     with open('/path/to/file', 'r') as fh:
+ 
+  if exists:
         return
-  except FileNotFoundError:
-    pass
+  else:
+        pass
+  user_id = message.from_user.id 
   sent_message = message.reply_text('جار التفريغ', quote=True)
   file = message.audio
   file_path = message.download(file_name="entry")
