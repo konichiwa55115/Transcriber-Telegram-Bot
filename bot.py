@@ -12,17 +12,18 @@ def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
     
 @bot.on_message(filters.private & filters.incoming & filters.audio )
-def remove_empty_files_and_folders(dir_path) -> None:
-    for root, dirnames, files in os.walk(dir_path, topdown=False):
-        for f in files:
-            full_name = os.path.join(root, f)
-            if os.path.getsize(full_name) == 0:
-                os.remove(full_name)
-
-        for dirname in dirnames:
-            full_path = os.path.realpath(os.path.join(root, dirname))
-            if not os.listdir(full_path):
-                os.rmdir(full_path)
+while(True):
+    path = input("/home/mohamadwardy88/trans5115text/")  
+    if(os.path.isdir(path)):  
+        break  
+    else:  
+        print("Entered path is wrong!") 
+for root,dirs,files in os.walk(path):  
+    for name in files:  
+        filename = os.path.join(root,name)   
+        if os.stat(filename).st_size == 0:  
+            print(" Removing ",filename)  
+            os.remove(filename)  
 def _telegram_file(client, message):
   try: 
     with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
@@ -43,17 +44,18 @@ def _telegram_file(client, message):
   subprocess.call(['unlink','transcription.txt'])   
  
 @bot.on_message(filters.private & filters.incoming & filters.voice )
-def remove_empty_files_and_folders(dir_path) -> None:
-    for root, dirnames, files in os.walk(dir_path, topdown=False):
-        for f in files:
-            full_name = os.path.join(root, f)
-            if os.path.getsize(full_name) == 0:
-                os.remove(full_name)
-
-        for dirname in dirnames:
-            full_path = os.path.realpath(os.path.join(root, dirname))
-            if not os.listdir(full_path):
-                os.rmdir(full_path)
+while(True):
+    path = input("/home/mohamadwardy88/trans5115text/")  
+    if(os.path.isdir(path)):  
+        break  
+    else:  
+        print("Entered path is wrong!") 
+for root,dirs,files in os.walk(path):  
+    for name in files:  
+        filename = os.path.join(root,name)   
+        if os.stat(filename).st_size == 0:  
+            print(" Removing ",filename)  
+            os.remove(filename)  
 def _telegram_file(client, message):
   try: 
     with open('/home/henrysawy51615/trans5115text/transcription.txt', 'r') as fh:
