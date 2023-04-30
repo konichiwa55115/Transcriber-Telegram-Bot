@@ -14,10 +14,8 @@ def command1(bot,message):
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
   try: 
-    with open('/home/mohamadwardy88/trans5115text/transcription.txt', 'r') as fh:
-        if os.stat('/home/mohamadwardy88/trans5115text/transcription.txt').st_size == 0: 
-            pass
-        else:
+    with open("./downloads/entry", 'r') as fh:
+       
             sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
             return
   except FileNotFoundError: 
@@ -33,15 +31,14 @@ def _telegram_file(client, message):
   with open('transcription.txt', 'rb') as f:
         bot.send_document(message.chat.id, f)
   subprocess.call(['unlink','transcription.txt'])   
+  subprocess.call(['unlink',"./downloads/entry"])  
  
 @bot.on_message(filters.private & filters.incoming & filters.voice )
 
 def _telegram_file(client, message):
   try: 
-    with open('/home/mohamadwardy88/trans5115text/transcription.txt', 'r') as fh:
-        if os.stat('/home/mohamadwardy88/trans5115text/transcription.txt').st_size == 0: 
-            pass
-        else:
+    with open("./downloads/entry", 'r') as fh:
+        
             sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
             return
   except FileNotFoundError: 
@@ -56,6 +53,7 @@ def _telegram_file(client, message):
     # Upload transcription file to user
   with open('transcription.txt', 'rb') as f:
         bot.send_document(message.chat.id, f)
-  subprocess.call(['unlink','transcription.txt'])      
+  subprocess.call(['unlink','transcription.txt'])
+  subprocess.call(['unlink',"./downloads/entry"]) 
 
 bot.run()
