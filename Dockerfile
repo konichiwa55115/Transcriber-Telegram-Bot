@@ -2,11 +2,12 @@
 #Must Subscribe On YouTube @LazyDeveloperr
 # Python Based Docker
 # Python Based Docker
-FROM python
+FROM python:latest
 
 # Installing Packages
 RUN apt update && apt upgrade -y
 RUN apt install git curl python3-pip ffmpeg -y
+RUN apt install dos2unix
 
 # Updating Pip Packages
 RUN pip3 install -U pip
@@ -22,4 +23,5 @@ WORKDIR /LazyDeveloper
 COPY start.sh /start.sh
 
 # Running MessageSearchBot
+RUN dos2unix /start.sh
 CMD ["/bin/bash", "/start.sh"]
