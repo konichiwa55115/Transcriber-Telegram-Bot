@@ -5,7 +5,7 @@ bot = Client(
     "myfirs",
     api_id=17983098,
     api_hash="ee28199396e0925f1f44d945ac174f64",
-    bot_token="5820144966:AAEYUop5E4vQWmxWwBo9wBnx0IiSCJUs2C8"
+    bot_token="5998058674:AAERWqRCudb9pyu_Kr2j1MY31j3NuXHsGKA"
 )
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
@@ -14,8 +14,8 @@ def command1(bot,message):
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
   try: 
-    with open('/home/mohamadwardy88/trans5115text/transcription.txt', 'r') as fh:
-        if os.stat('/home/mohamadwardy88/trans5115text/transcription.txt').st_size == 0: 
+    with open(' ~/trans5115text/transcription.txt', 'r') as fh:
+        if os.stat(' ~/trans5115text/transcription.txt').st_size == 0: 
             pass
         else:
             sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
@@ -38,8 +38,8 @@ def _telegram_file(client, message):
 
 def _telegram_file(client, message):
   try: 
-    with open('/home/mohamadwardy88/trans5115text/transcription.txt', 'r') as fh:
-        if os.stat('/home/mohamadwardy88/trans5115text/transcription.txt').st_size == 0: 
+    with open(' ~/trans5115text/transcription.txt', 'r') as fh:
+        if os.stat(' ~/trans5115text/transcription.txt').st_size == 0: 
             pass
         else:
             sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
