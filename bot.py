@@ -5,7 +5,7 @@ bot = Client(
     "myfirs",
     api_id=17983098,
     api_hash="ee28199396e0925f1f44d945ac174f64",
-    bot_token="5998058674:AAERWqRCudb9pyu_Kr2j1MY31j3NuXHsGKA"
+    bot_token="5998058674:AAGcy7rA5u_x87r8Nr1soEI_42y7k_WRcq8"
 )
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
