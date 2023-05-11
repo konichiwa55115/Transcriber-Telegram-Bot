@@ -6,6 +6,7 @@ FROM python:latest
 
 # Installing Packages
 RUN apt update && apt upgrade -y
+RUN apt-get install python3.9
 RUN apt install git curl python3-pip ffmpeg -y
 RUN apt install dos2unix
 
