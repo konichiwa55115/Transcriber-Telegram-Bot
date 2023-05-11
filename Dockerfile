@@ -2,7 +2,7 @@
 #Must Subscribe On YouTube @LazyDeveloperr
 # Python Based Docker
 # Python Based Docker
-FROM python:3.8-buster
+FROM python:3.9-buster
 
 # Installing Packages
 RUN apt update && apt upgrade -y
