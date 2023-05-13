@@ -10,6 +10,10 @@ bot = Client(
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
     bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
+@bot.on_message(filters.command('clear') & filters.private)
+def command1(bot,message):
+    bot.send_message(message.chat.id, " تم الإخلاء ",disable_web_page_preview=True)
+    subprocess.call(['unlink','transcription.txt'])   
     
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
