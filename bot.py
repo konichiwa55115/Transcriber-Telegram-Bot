@@ -5,7 +5,7 @@ bot = Client(
     "myfirs",
     api_id=17983098,
     api_hash="ee28199396e0925f1f44d945ac174f64",
-    bot_token="5998058674:AAEXlnSyDM3Cz-q9AAqOdHWzBYxFzxv3EPE"
+    bot_token="5782497998:AAEf0sdg9W84-8AhODyR9KrDGjmWGlkipvs"
 )
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
@@ -13,53 +13,50 @@ def command1(bot,message):
 @bot.on_message(filters.command('clear') & filters.private)
 def command1(bot,message):
     bot.send_message(message.chat.id, " تم الإخلاء ",disable_web_page_preview=True)
-    subprocess.call(['unlink','transcription.txt'])   
+    subprocess.call(['rm','-r',"./downloads/"])   
     
 @bot.on_message(filters.private & filters.incoming & filters.audio )
 def _telegram_file(client, message):
-  try: 
-    with open('transcription.txt', 'r') as fh:
-        if os.stat('transcription.txt').st_size == 0: 
-            pass
-        else:
-            sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
-            return
-  except FileNotFoundError: 
-    pass  
+  if os.path.isdir("./downloads/") :
+        sent_message = message.reply_text('هناك عملية يتم الآن . أرسل الصوتية  بعد مدة من فضلك', quote=True)
+        return
+  else :
+        pass
   user_id = message.from_user.id 
-  sent_message = message.reply_text('جار التفريغ', quote=True)
+  sent_message = message.reply_text('جار التفريغ ', quote=True)
   file = message.audio
-  file_path = message.download(file_name="entry")
+  file_path = message.download(file_name="./downloads/")
+  head, tail = os.path.split(file_path)
 
     # Execute speech.py script with entry file
-  subprocess.call(['python3', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', "./downloads/entry" , 'transcription.txt'])
+  subprocess.call(['python3', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', file_path, tail+".txt"])
     # Upload transcription file to user
-  with open('transcription.txt', 'rb') as f:
+  with open(tail+".txt", 'rb') as f:
         bot.send_document(message.chat.id, f)
-  subprocess.call(['unlink','transcription.txt'])   
+  subprocess.call(['rm', tail+".txt" ])  
+  subprocess.call(['rm', "-r",head ])
  
 @bot.on_message(filters.private & filters.incoming & filters.voice )
-
 def _telegram_file(client, message):
-  try: 
-    with open('transcription.txt', 'r') as fh:
-        if os.stat('transcription.txt').st_size == 0: 
-            pass
-        else:
-            sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
-            return
-  except FileNotFoundError: 
-    pass  
-  user_id = message.from_user.id
-  sent_message = message.reply_text('جار التفريغ', quote=True)
-  file = message.voice
-  file_path = message.download(file_name="entry")
+
+
+  if os.path.isdir("./downloads/") :
+        sent_message = message.reply_text('هناك عملية يتم الآن . أرسل الصوتية  بعد مدة من فضلك', quote=True)
+        return
+  else :
+        pass
+  user_id = message.from_user.id 
+  sent_message = message.reply_text('جار التفريغ ', quote=True)
+  file = message.audio
+  file_path = message.download(file_name="./downloads/")
+  head, tail = os.path.split(file_path)
 
     # Execute speech.py script with entry file
-  subprocess.call(['python3', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', "./downloads/entry" , 'transcription.txt'])
+  subprocess.call(['python3', 'speech.py', 'RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH', file_path, tail+".txt"])
     # Upload transcription file to user
-  with open('transcription.txt', 'rb') as f:
+  with open(tail+".txt", 'rb') as f:
         bot.send_document(message.chat.id, f)
-  subprocess.call(['unlink','transcription.txt'])      
+  subprocess.call(['rm', tail+".txt" ])  
+  subprocess.call(['rm', "-r",head ])
 
 bot.run()
