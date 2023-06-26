@@ -6,7 +6,7 @@ bot = Client(
     "myfirs",
     api_id=17983098,
     api_hash="ee28199396e0925f1f44d945ac174f64",
-    bot_token="5848326557:AAGHzvPErt9hr6NFYn7TNDOaXQiVXvR213c"
+    bot_token="5782497998:AAEDUwRsp7p_9VHsfiFIYpHGO0Kt54octQI"
 )
 CHOOSE_UR_LANG = " اختر لغة المقطع من فضلك "
 CHOOSE_UR_LANG_BUTTONS = [
@@ -22,7 +22,7 @@ CHOOSE_UR_LANG_BUTTONS = [
 
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
-    bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات , فقط أرسل الصوتية هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
+    bot.send_message(message.chat.id, " السلام عليكم أنا بوت تفريغ صوتيات/ فيديوهات , فقط أرسل الصوتية/الفيديو هنا\n\n  لبقية البوتات هنا \n\n https://t.me/ibnAlQyyim/1120 ",disable_web_page_preview=True)
 
     
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice | filters.video | filters.document )
@@ -30,7 +30,7 @@ def _telegram_file(bot, message):
   try: 
     with open("myfile.txt", 'r') as fh:
       
-            sent_message = message.reply_text('هناك عملية يتم الآن . أرسل الفيديو بعد مدة من فضلك', quote=True)
+            sent_message = message.reply_text('هناك عملية يتم الآن . أرسل الصوتية/الفيديو بعد مدة من فضلك', quote=True)
             return
   except FileNotFoundError: 
     pass  
@@ -68,11 +68,15 @@ def callback_query(CLIENT,CallbackQuery):
       langtoken = "UEK2TR23J5ECLC6L6BI5YNHN5MBC4Q6U"
   elif CallbackQuery.data == "اليابانية":
       langtoken = "BCDCJOEWUAGWQZTHX4QGSXGWLO5CWV5Z" 
+  CallbackQuery.edit_message_text(
+      
+      "جار التفريغ"
+  )    
   subprocess.call(['ffmpeg', '-i',file_path,'-q:a','0','-map','a',mp3file,'-y' ])
   subprocess.call(['python','speech.py',langtoken,mp3file,result])
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
         subprocess.call(['unlink',"myfile.txt"])  
-
+        
 
 bot.run()
