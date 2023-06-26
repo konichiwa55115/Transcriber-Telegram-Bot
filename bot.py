@@ -71,12 +71,13 @@ def callback_query(CLIENT,CallbackQuery):
   CallbackQuery.edit_message_text(
       
       "جار التفريغ"
-  )    
+  )   
   subprocess.call(['ffmpeg', '-i',file_path,'-q:a','0','-map','a',mp3file,'-y' ])
   subprocess.call(['python','speech.py',langtoken,mp3file,result])
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
         subprocess.call(['unlink',"myfile.txt"])  
-        
+        subprocess.call(['unlink',mp3file])  
+        subprocess.call(['unlink',result])  
 
 bot.run()
