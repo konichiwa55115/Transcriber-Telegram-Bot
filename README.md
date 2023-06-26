@@ -1,6 +1,6 @@
 # Trancriber-Telegram-Bot
-A Telegram Bot to Transcribe audios/videos made with python 
 
+Thanks to Allah ( God ) , I developed this simple Telegram Bot to Transcribe audios/videos made with python 
 
 Before Deploying , Check out this [Test Bot ](https://t.me/transhcjj6543bot)
 
