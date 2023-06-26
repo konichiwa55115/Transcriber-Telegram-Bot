@@ -12,3 +12,5 @@ special thank to [@charslab](https://github.com/charslab) for their speech.py wo
 for support 
 
 [paypal](https://www.paypal.com/paypalme/kelectronic89)
+
+Don't forget to Leave A Star ⭐️
