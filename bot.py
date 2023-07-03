@@ -75,8 +75,7 @@ def callback_query(CLIENT,CallbackQuery):
       
       "Transcribing ....."
   )   
-  subprocess.call(['ffmpeg', '-i',file_path,'-b:a','10k',mp3file,'-y' ])
-  subprocess.call(['python3','speech.py',langtoken,mp3file,"transcription.txt"])
+  subprocess.call(['python3','speech.py',langtoken,file_path,"transcription.txt"])
   subprocess.call(['mv',"transcription.txt",result])
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
