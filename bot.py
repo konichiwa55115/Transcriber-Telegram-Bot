@@ -4,9 +4,9 @@ from pyrogram.types import InlineKeyboardMarkup , InlineKeyboardButton , ReplyKe
 import subprocess
 bot = Client(
     "transcribebot",
-    api_id=*************,
-    api_hash="****************",
-    bot_token="****************"
+    api_id=17983098,
+    api_hash="ee28199396e0925f1f44d945ac174f64",
+    bot_token="5782497998:AAFdx2dX3yeiyDIcoJwPa_ghY2h_dozEh_E"
 )
 
 #Fill vars with your own id , hash and token 
@@ -30,15 +30,15 @@ def command1(bot,message):
     
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice | filters.video | filters.document )
 def _telegram_file(bot, message):
-  try: 
-    with open("myfile.txt", 'r') as fh:
-      
-            sent_message = message.reply_text(" There's a Transcription Process running right now ! \n\n Plz, send media after a while !" , quote=True)
+  try:
+   with open('./transcription.txt', 'r') as fh:
+        if os.stat('./transcription.txt').st_size == 0: 
+            pass
+        else:
+            sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
             return
   except FileNotFoundError: 
     pass  
-    f = open("myfile.txt", "x")
-
   global user_id
   user_id = message.from_user.id 
   file = message.audio
@@ -76,10 +76,11 @@ def callback_query(CLIENT,CallbackQuery):
       "Transcribing ....."
   )   
   subprocess.call(['ffmpeg', '-i',file_path,'-b:a','10k',mp3file,'-y' ])
-  subprocess.call(['python3','speech.py',langtoken,mp3file,result])
+  subprocess.call(['python3','speech.py',langtoken,mp3file,"transcription.txt"])
+  subprocess.call(['mv',"transcription.txt",result])
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
-  subprocess.call(['unlink',"myfile.txt"])  
+  subprocess.call(['rm','-r',"./downloads/"])  
   subprocess.call(['unlink',mp3file])  
   subprocess.call(['unlink',result])  
 
