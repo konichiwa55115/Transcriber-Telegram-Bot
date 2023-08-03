@@ -2,6 +2,7 @@ import os
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup , InlineKeyboardButton , ReplyKeyboardMarkup , CallbackQuery
 from os import system as cmd
+import shutil
 bot = Client(
     "transcribebot",
     api_id=17983098,
@@ -30,6 +31,11 @@ def command1(bot,message):
     
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice | filters.video | filters.document )
 def _telegram_file(bot, message):
+  if os.path.isdir("./downloads/") :
+        sent_message = message.reply_text('Transcribing right now , plz send media after a while', quote=True)
+        return
+  else :
+        pass
   global user_id
   user_id = message.from_user.id 
   file = message.audio
@@ -67,7 +73,7 @@ def callback_query(CLIENT,CallbackQuery):
   cmd(f'''python3 speech.py {langtoken} "{file_path}" "{result}" ''')  
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
-  cmd(f'''unlink "{file_path}"''')
+  shutil.rmtree('./downloads/')
   cmd(f'''unlink "{result}"''') 
 
 bot.run()
