@@ -67,7 +67,7 @@ def callback_query(CLIENT,CallbackQuery):
   cmd(f'''python3 speech.py {langtoken} "{file_path}" "{result}" ''')  
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
-  cmd(f'''unlink {file_path}''')
-  cmd(f'''unlink {result}''') 
+  cmd(f'''unlink "{file_path}"''')
+  cmd(f'''unlink "{result}"''') 
 
 bot.run()
