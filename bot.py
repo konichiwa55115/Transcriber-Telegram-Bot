@@ -1,7 +1,7 @@
 import os
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup , InlineKeyboardButton , ReplyKeyboardMarkup , CallbackQuery
-import subprocess
+from os import system as cmd
 bot = Client(
     "transcribebot",
     api_id=17983098,
@@ -30,15 +30,6 @@ def command1(bot,message):
     
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice | filters.video | filters.document )
 def _telegram_file(bot, message):
-  try:
-   with open('./transcription.txt', 'r') as fh:
-        if os.stat('./transcription.txt').st_size == 0: 
-            pass
-        else:
-            sent_message = message.reply_text('هناك تفريغ يتم الآن . أرسل الصوتية بعد مدة من فضلك', quote=True)
-            return
-  except FileNotFoundError: 
-    pass  
   global user_id
   user_id = message.from_user.id 
   file = message.audio
@@ -47,10 +38,8 @@ def _telegram_file(bot, message):
   filename = os.path.basename(file_path)
   head, tail = os.path.split(file_path)
   file, ext = os.path.splitext(tail)
-  global mp3file
-  mp3file= file+".mp3"
   global result
-  result = file+".txt"
+  result = f"{file}.txt"
   message.reply(
              text = CHOOSE_UR_LANG,
              reply_markup = InlineKeyboardMarkup(CHOOSE_UR_LANG_BUTTONS)
@@ -75,12 +64,10 @@ def callback_query(CLIENT,CallbackQuery):
       
       "Transcribing ....."
   )   
-  subprocess.call(['python3','speech.py',langtoken,file_path,"transcription.txt"])
-  subprocess.call(['mv',"transcription.txt",result])
+  cmd(f'''python3 speech.py {langtoken} "{file_path}" "{result}" ''')  
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
-  subprocess.call(['rm','-r',"./downloads/"])  
-  subprocess.call(['unlink',mp3file])  
-  subprocess.call(['unlink',result])  
+  cmd(f'''unlink {file_path}''')
+  cmd(f'''unlink {result}''') 
 
 bot.run()
