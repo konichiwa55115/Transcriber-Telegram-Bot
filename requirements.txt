@@ -6,5 +6,6 @@ requests
 subprocess.run
 pyrogram
 tgcrypto
+audioread
 
 
