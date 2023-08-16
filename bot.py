@@ -46,10 +46,12 @@ def _telegram_file(bot, message):
   global file_path
   file_path = message.download(file_name="./downloads/")
   filename = os.path.basename(file_path)
-  head, tail = os.path.split(file_path)
-  file, ext = os.path.splitext(tail)
+  nom,ex = os.path.splitext(filename)
+  global mp3file
+  mp3file = f"{nom}.mp3"
   global result
-  result = f"{file}.txt"
+  result = f"{nom}.txt"
+  cmd(f'''ffmpeg -i "{file_path}" -q:a 0 -map a "{mp3file}" -y ''')
   message.reply(
              text = CHOOSE_UR_LANG,
              reply_markup = InlineKeyboardMarkup(CHOOSE_UR_LANG_BUTTONS)
@@ -74,11 +76,11 @@ def callback_query(CLIENT,CallbackQuery):
       
       "Transcribing ....."
   )   
-  cmd(f'''python3 speech.py {langtoken} "{file_path}" "transcription.txt" ''')
+  cmd(f'''python3 speech.py {langtoken} "{mp3file}" "transcription.txt" ''')
   cmd(f'''mv transcription.txt {result}''')
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
   shutil.rmtree('./downloads/')
-  cmd(f'''unlink "{result}"''') 
+  cmd(f'''rm "{result}" "{mp3file}"''') 
 
 bot.run()
