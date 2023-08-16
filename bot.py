@@ -38,6 +38,8 @@ def _telegram_file(bot, message):
         else:
             sent_message = message.reply_text('Transcribing right now ! plz send media after a while ', quote=True)
             return
+  except FileNotFoundError: 
+    pass  
   global user_id
   user_id = message.from_user.id 
   file = message.audio
