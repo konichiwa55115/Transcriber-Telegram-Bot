@@ -27,7 +27,9 @@ CHOOSE_UR_LANG_BUTTONS = [
 @bot.on_message(filters.command('start') & filters.private)
 def command1(bot,message):
     bot.send_message(message.chat.id, " Hi there , I'm a simple Telegram bot to transcribe audios/videos , just send/forward any media ",disable_web_page_preview=True)
-
+@bot.on_message(filters.command('clear') & filters.private)
+def command1(bot,message):
+  cmd('rm transcription.txt')
     
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice | filters.video | filters.document )
 def _telegram_file(bot, message):
