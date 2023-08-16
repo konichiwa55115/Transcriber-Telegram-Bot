@@ -88,7 +88,7 @@ def callback_query(CLIENT,CallbackQuery):
    with open(result, 'rb') as f:
         bot.send_document(user_id, f)
    shutil.rmtree('./downloads/')
-   cmd(f'''rm "{result}" "{mp3file}"''') 
+   cmd(f'''rm "{result}"''') 
   else : 
         cmd(f'mkdir parts')
         cmd(f'''ffmpeg -i "{file_path}" -f segment -segment_time 120 -c copy "./parts/{nom}%09d.wav" -y''')
