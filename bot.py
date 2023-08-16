@@ -3,6 +3,8 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup , InlineKeyboardButton , ReplyKeyboardMarkup , CallbackQuery
 from os import system as cmd
 import shutil
+import audioread
+from pathlib import Path
 bot = Client(
     "transcribebot",
     api_id=17983098,
@@ -48,6 +50,7 @@ def _telegram_file(bot, message):
   global file_path
   file_path = message.download(file_name="./downloads/")
   filename = os.path.basename(file_path)
+  global nom
   nom,ex = os.path.splitext(filename)
   global mp3file
   mp3file = f"{nom}.mp3"
@@ -77,11 +80,53 @@ def callback_query(CLIENT,CallbackQuery):
       
       "Transcribing ....."
   )   
-  cmd(f'''python3 speech.py {langtoken} "{file_path}" "transcription.txt" ''')
-  cmd(f'''mv transcription.txt {result}''')
-  with open(result, 'rb') as f:
+  with audioread.audio_open(file_path) as f:
+            totalsec = f.duration
+  if totalsec<= 1800 :
+   cmd(f'''python3 speech.py {langtoken} "{file_path}" "transcription.txt" ''')
+   cmd(f'''mv transcription.txt {result}''')
+   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
-  shutil.rmtree('./downloads/')
-  cmd(f'''rm "{result}" "{mp3file}"''') 
-
+   shutil.rmtree('./downloads/')
+   cmd(f'''rm "{result}" "{mp3file}"''') 
+  else : 
+        cmd(f'mkdir parts')
+        cmd(f'''ffmpeg -i "{file_path}" -f segment -segment_time 1800 -c copy "./parts/{nom}%09d.wav" -y''')
+        dir_path = "./parts/"
+        count = 0
+        for path in os.listdir(dir_path):
+                if os.path.isfile(os.path.join(dir_path, path)):
+                            count += 1
+                            numbofitems=count
+        if numbofitems<10 :
+         coca=0
+         while (coca < numbofitems): 
+             pathy=f"./parts/{nom}00000000{coca}.wav"
+             cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
+             txt = Path('transcription.txt').read_text()
+             with open(result, 'x') as f:
+                  f.write(f"{txt} \n")
+             coca += 1                    
+        else :
+         coca = 0
+         while (coca < 10): 
+             pathy=f"./parts/{nom}00000000{coca}.wav"
+             cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
+             txt = Path('transcription.txt').read_text()
+             with open(result, 'x') as f:
+                  f.write(f"{txt} \n")
+             coca += 1                    
+         coca = 10
+         while (coca < numbofitems): 
+             pathy=f"./parts/{nom}0000000{coca}.wav"
+             cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
+             txt = Path('transcription.txt').read_text()
+             with open(result, 'x') as f:
+                  f.write(f"{txt} \n")
+             coca += 1                    
+        with open(result, 'rb') as f:
+         bot.send_document(user_id, f)
+        shutil.rmtree('./downloads/')
+        shutil.rmtree('./parts/')
+        cmd(f'''rm "{result}"''') 
 bot.run()
