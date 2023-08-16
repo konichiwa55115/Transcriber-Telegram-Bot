@@ -31,11 +31,13 @@ def command1(bot,message):
     
 @bot.on_message(filters.private & filters.incoming & filters.audio | filters.voice | filters.video | filters.document )
 def _telegram_file(bot, message):
-  if os.path.isdir("./downloads/") :
-        sent_message = message.reply_text('Transcribing right now , plz send media after a while', quote=True)
-        return
-  else :
-        pass
+  try: 
+    with open('transcription.txt', 'r') as fh:
+        if os.stat('transcription.txt').st_size == 0: 
+            pass
+        else:
+            sent_message = message.reply_text('Transcribing right now ! plz send media after a while ', quote=True)
+            return
   global user_id
   user_id = message.from_user.id 
   file = message.audio
@@ -70,7 +72,8 @@ def callback_query(CLIENT,CallbackQuery):
       
       "Transcribing ....."
   )   
-  cmd(f'''python3 speech.py {langtoken} "{file_path}" "{result}" ''')  
+  cmd(f'''python3 speech.py {langtoken} "{file_path}" "transcription.txt" ''')
+  cmd(f'''mv transcription.txt {result}''')
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
   shutil.rmtree('./downloads/')
