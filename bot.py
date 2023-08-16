@@ -53,7 +53,6 @@ def _telegram_file(bot, message):
   mp3file = f"{nom}.mp3"
   global result
   result = f"{nom}.txt"
-  cmd(f'''ffmpeg -i "{file_path}" -q:a 0 -map a "{mp3file}" -y ''')
   message.reply(
              text = CHOOSE_UR_LANG,
              reply_markup = InlineKeyboardMarkup(CHOOSE_UR_LANG_BUTTONS)
@@ -78,7 +77,7 @@ def callback_query(CLIENT,CallbackQuery):
       
       "Transcribing ....."
   )   
-  cmd(f'''python3 speech.py {langtoken} "{mp3file}" "transcription.txt" ''')
+  cmd(f'''python3 speech.py {langtoken} "{file_path}" "transcription.txt" ''')
   cmd(f'''mv transcription.txt {result}''')
   with open(result, 'rb') as f:
         bot.send_document(user_id, f)
