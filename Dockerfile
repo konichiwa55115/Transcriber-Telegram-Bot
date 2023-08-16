@@ -10,5 +10,9 @@ RUN pip3 install -U -r requirements.txt
 RUN mkdir /kony
 WORKDIR /kony
 COPY start.sh /start.sh
+COPY starty.sh /starty.sh
 RUN dos2unix /start.sh
+RUN dos2unix /starty.sh
 CMD ["/bin/bash", "/start.sh"]
+CMD ["/bin/bash", "/starty.sh"]
+
