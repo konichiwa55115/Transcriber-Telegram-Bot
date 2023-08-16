@@ -82,7 +82,7 @@ def callback_query(CLIENT,CallbackQuery):
   )   
   with audioread.audio_open(file_path) as f:
             totalsec = f.duration
-  if totalsec<= 1800 :
+  if totalsec<= 180 :
    cmd(f'''python3 speech.py {langtoken} "{file_path}" "transcription.txt" ''')
    cmd(f'''mv transcription.txt {result}''')
    with open(result, 'rb') as f:
@@ -91,7 +91,7 @@ def callback_query(CLIENT,CallbackQuery):
    cmd(f'''rm "{result}" "{mp3file}"''') 
   else : 
         cmd(f'mkdir parts')
-        cmd(f'''ffmpeg -i "{file_path}" -f segment -segment_time 1800 -c copy "./parts/{nom}%09d.wav" -y''')
+        cmd(f'''ffmpeg -i "{file_path}" -f segment -segment_time 180 -c copy "./parts/{nom}%09d.wav" -y''')
         dir_path = "./parts/"
         count = 0
         for path in os.listdir(dir_path):
@@ -104,7 +104,7 @@ def callback_query(CLIENT,CallbackQuery):
              pathy=f"./parts/{nom}00000000{coca}.wav"
              cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
              txt = Path('transcription.txt').read_text()
-             with open(result, 'x') as f:
+             with open(result, 'a') as f:
                   f.write(f"{txt} \n")
              coca += 1                    
         else :
@@ -113,7 +113,7 @@ def callback_query(CLIENT,CallbackQuery):
              pathy=f"./parts/{nom}00000000{coca}.wav"
              cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
              txt = Path('transcription.txt').read_text()
-             with open(result, 'x') as f:
+             with open(result, 'a') as f:
                   f.write(f"{txt} \n")
              coca += 1                    
          coca = 10
@@ -121,7 +121,7 @@ def callback_query(CLIENT,CallbackQuery):
              pathy=f"./parts/{nom}0000000{coca}.wav"
              cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
              txt = Path('transcription.txt').read_text()
-             with open(result, 'x') as f:
+             with open(result, 'a') as f:
                   f.write(f"{txt} \n")
              coca += 1                    
         with open(result, 'rb') as f:
