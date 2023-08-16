@@ -82,7 +82,7 @@ def callback_query(CLIENT,CallbackQuery):
   )   
   with audioread.audio_open(file_path) as f:
             totalsec = f.duration
-  if totalsec<= 180 :
+  if totalsec<= 120 :
    cmd(f'''python3 speech.py {langtoken} "{file_path}" "transcription.txt" ''')
    cmd(f'''mv transcription.txt {result}''')
    with open(result, 'rb') as f:
@@ -91,7 +91,7 @@ def callback_query(CLIENT,CallbackQuery):
    cmd(f'''rm "{result}" "{mp3file}"''') 
   else : 
         cmd(f'mkdir parts')
-        cmd(f'''ffmpeg -i "{file_path}" -f segment -segment_time 180 -c copy "./parts/{nom}%09d.wav" -y''')
+        cmd(f'''ffmpeg -i "{file_path}" -f segment -segment_time 120 -c copy "./parts/{nom}%09d.wav" -y''')
         dir_path = "./parts/"
         count = 0
         for path in os.listdir(dir_path):
