@@ -87,7 +87,6 @@ def callback_query(CLIENT,CallbackQuery):
    cmd(f'''mv transcription.txt {result}''')
    with open(result, 'rb') as f:
         bot.send_document(user_id, f)
-   shutil.rmtree('./downloads/')
   else : 
         cmd(f'mkdir parts')
         cmd(f'''ffmpeg -i "{file_path}" -f segment -segment_time 120 -c copy "./parts/{nom}%09d.wav" -y''')
@@ -125,7 +124,8 @@ def callback_query(CLIENT,CallbackQuery):
              coca += 1                    
         with open(result, 'rb') as f:
          bot.send_document(user_id, f)
-        shutil.rmtree('./downloads/')
         shutil.rmtree('./parts/')
-  cmd(f'''rm "{result}"''') 
+  cmd(f'''rm "{result}"''')
+  shutil.rmtree('./downloads/')
+
 bot.run()
