@@ -63,7 +63,6 @@ def _telegram_file(bot, message):
         )
 @bot.on_callback_query()
 def callback_query(CLIENT,CallbackQuery):
-  cmd(f'''ffmpeg -i "{file_path}" -q:a 0 -map a "{mp3file}" -y ''')
   global langtoken
   if CallbackQuery.data == "AR":
       langtoken = "RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH"
@@ -80,7 +79,8 @@ def callback_query(CLIENT,CallbackQuery):
   CallbackQuery.edit_message_text(
       
       "Transcribing ....."
-  )   
+  ) 
+  cmd(f'''ffmpeg -i "{file_path}" -q:a 0 -map a "{mp3file}" -y ''')  
   with audioread.audio_open(mp3file) as f:
             totalsec = f.duration
   if totalsec<= 3600 :
