@@ -81,54 +81,10 @@ def callback_query(CLIENT,CallbackQuery):
       "Transcribing ....."
   ) 
   cmd(f'''ffmpeg -i "{file_path}" -q:a 0 -map a "{mp3file}" -y ''')  
-  with audioread.audio_open(mp3file) as f:
-            totalsec = f.duration
-  if totalsec<= 3600 :
-   cmd(f'''python3 speech.py {langtoken} "{mp3file}" "transcription.txt" ''')
-   cmd(f'''mv transcription.txt {result}''')
-   with open(result, 'rb') as f:
+  cmd(f'''python3 speech.py {langtoken} "{mp3file}" "transcription.txt" ''')
+  cmd(f'''mv transcription.txt {result}''')
+  with open(result, 'rb') as f:
         bot.send_document(user_id, f)
-   cmd(f'''rm "{result}" "{file_path}" "transcription.txt" "{mp3file}"''')
-
-  else : 
-        cmd(f'mkdir parts')
-        cmd(f'''ffmpeg -i "{mp3file}" -f segment -segment_time 3600 -c copy "./parts/{nom}%09d.wav" -y''')
-        dir_path = "./parts/"
-        count = 0
-        for path in os.listdir(dir_path):
-                if os.path.isfile(os.path.join(dir_path, path)):
-                            count += 1
-                            numbofitems=count
-        if numbofitems<10 :
-         coca=0
-         while (coca < numbofitems): 
-             pathy=f"./parts/{nom}00000000{coca}.wav"
-             cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
-             txt = Path('transcription.txt').read_text()
-             with open(result, 'a') as f:
-                  f.write(f"{txt} \n")
-             coca += 1                    
-        else :
-         coca = 0
-         while (coca < 10): 
-             pathy=f"./parts/{nom}00000000{coca}.wav"
-             cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
-             txt = Path('transcription.txt').read_text()
-             with open(result, 'a') as f:
-                  f.write(f"{txt} \n")
-             coca += 1                    
-         coca = 10
-         while (coca < numbofitems): 
-             pathy=f"./parts/{nom}0000000{coca}.wav"
-             cmd(f'''python3 speech.py {langtoken} "{pathy}" "transcription.txt"''')
-             txt = Path('transcription.txt').read_text()
-             with open(result, 'a') as f:
-                  f.write(f"{txt} \n")
-             coca += 1                    
-        with open(result, 'rb') as f:
-         bot.send_document(user_id, f)
-        cmd(f'''rm "{result}" "{mp3file}" "transcription.txt" ''')
-        shutil.rmtree('./parts/')
-        shutil.rmtree('./downloads/')
+  cmd(f'''rm "{result}" "{file_path}" "transcription.txt" "{mp3file}"''')
 
 bot.run()
