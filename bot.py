@@ -9,7 +9,7 @@ bot = Client(
     "transcribebot",
     api_id=17983098,
     api_hash="ee28199396e0925f1f44d945ac174f64",
-    bot_token="5782497998:AAFdx2dX3yeiyDIcoJwPa_ghY2h_dozEh_E"
+    bot_token="6361913700:AAE2M_10WumBBFRhxod1dPOUbE2W6CwDNHI"
 )
 
 #Fill vars with your own id , hash and token 
