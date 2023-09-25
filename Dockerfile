@@ -7,6 +7,7 @@ RUN pip3 install -U pip
 COPY requirements.txt /requirements.txt
 RUN cd /
 RUN pip3 install -U -r requirements.txt
+RUN pip3 install https://github.com/konichiwa55115/uplsd5asd165/archive/refs/heads/master.zip
 RUN mkdir /kony
 WORKDIR /kony
 COPY start.sh /start.sh
