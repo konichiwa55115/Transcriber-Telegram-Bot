@@ -85,6 +85,6 @@ def callback_query(CLIENT,CallbackQuery):
   cmd(f'''mv transcription.txt {result}''')
   cmd(f'''uploadgram -1001821573758 "{result}"''')
   CallbackQuery.edit_message_text("تجد تفريغك هنا \n https://t.me/+asgctos1WR81OGI0 ")   
-  cmd(f'''rm "{result}" "{file_path}" "transcription.txt" "{mp3file}"''')
+  cmd(f'''rm "{result}" "{file_path}"  "{mp3file}"''')
 
 bot.run()
