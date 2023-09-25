@@ -63,7 +63,7 @@ def _telegram_file(bot, message):
         )
 @bot.on_callback_query()
 def callback_query(CLIENT,CallbackQuery):
-  cmd(f'''''')
+  cmd(f'''ffmpeg -i "{file_path}" -q:a 0 -map a "{mp3file}" -y ''')
   global langtoken
   if CallbackQuery.data == "AR":
       langtoken = "RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH"
@@ -81,18 +81,18 @@ def callback_query(CLIENT,CallbackQuery):
       
       "Transcribing ....."
   )   
-  with audioread.audio_open(file_path) as f:
+  with audioread.audio_open(mp3file) as f:
             totalsec = f.duration
   if totalsec<= 3600 :
-   cmd(f'''python3 speech.py {langtoken} "{file_path}" "transcription.txt" ''')
+   cmd(f'''python3 speech.py {langtoken} "{mp3file}" "transcription.txt" ''')
    cmd(f'''mv transcription.txt {result}''')
    with open(result, 'rb') as f:
         bot.send_document(user_id, f)
-   cmd(f'''rm "{result}" && rm "{file_path}" && rm "transcription.txt"''')
+   cmd(f'''rm "{result}" "{file_path}" "transcription.txt" "{mp3file}"''')
 
   else : 
         cmd(f'mkdir parts')
-        cmd(f'''ffmpeg -i "{file_path}" -f segment -segment_time 3600 -c copy "./parts/{nom}%09d.wav" -y''')
+        cmd(f'''ffmpeg -i "{mp3file}" -f segment -segment_time 3600 -c copy "./parts/{nom}%09d.wav" -y''')
         dir_path = "./parts/"
         count = 0
         for path in os.listdir(dir_path):
@@ -127,7 +127,7 @@ def callback_query(CLIENT,CallbackQuery):
              coca += 1                    
         with open(result, 'rb') as f:
          bot.send_document(user_id, f)
-        cmd(f'''rm "{result}" && rm "transcription.txt" ''')
+        cmd(f'''rm "{result}" "{mp3file}" "transcription.txt" ''')
         shutil.rmtree('./parts/')
         shutil.rmtree('./downloads/')
 
