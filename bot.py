@@ -83,7 +83,7 @@ def callback_query(CLIENT,CallbackQuery):
   cmd(f'''ffmpeg -i "{file_path}" -q:a 0 -map a "{mp3file}" -y ''')  
   cmd(f'''python3 speech.py {langtoken} "{mp3file}" "transcription.txt" ''')
   cmd(f'''mv transcription.txt {result}''')
-  cmd(f'''uploadgram -1001821573758 {result}''')
+  cmd(f'''uploadgram -1001821573758 "{result}"''')
   CallbackQuery.edit_message_text("تجد تفريغك هنا \n https://t.me/+asgctos1WR81OGI0 ")   
   cmd(f'''rm "{result}" "{file_path}" "transcription.txt" "{mp3file}"''')
 
