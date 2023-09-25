@@ -9,7 +9,7 @@ bot = Client(
     "transcribebot",
     api_id=17983098,
     api_hash="ee28199396e0925f1f44d945ac174f64",
-    bot_token="6361913700:AAE2M_10WumBBFRhxod1dPOUbE2W6CwDNHI"
+    bot_token="5782497998:AAFdx2dX3yeiyDIcoJwPa_ghY2h_dozEh_E"
 )
 
 #Fill vars with your own id , hash and token 
@@ -63,6 +63,7 @@ def _telegram_file(bot, message):
         )
 @bot.on_callback_query()
 def callback_query(CLIENT,CallbackQuery):
+  cmd(f'''''')
   global langtoken
   if CallbackQuery.data == "AR":
       langtoken = "RK3ETXWBJQSMO262RXPAIXFSG6NH3QRH"
@@ -127,7 +128,7 @@ def callback_query(CLIENT,CallbackQuery):
         with open(result, 'rb') as f:
          bot.send_document(user_id, f)
         cmd(f'''rm "{result}" && rm "transcription.txt" ''')
-  shutil.rmtree('./parts/')
-  shutil.rmtree('./downloads/')
+        shutil.rmtree('./parts/')
+        shutil.rmtree('./downloads/')
 
 bot.run()
